@@ -1,0 +1,10 @@
+<Configuration ID="6dbbe3cd-54c5-4e05-9b7f-0123922eb34f">
+  <Add OfficeClientEdition="64" Channel="MonthlyEnterprise">
+    <Product ID="O365BusinessRetail">
+      <Language ID="MatchOS" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Lync" />
+    </Product>
+  </Add>
+  <RemoveMSI />
+</Configuration>

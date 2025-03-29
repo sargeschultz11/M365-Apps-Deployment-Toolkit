@@ -1,0 +1,9 @@
+<Configuration ID="c3089e9b-4891-4ccb-b7a1-8ac5f42ee68a">
+  <Add Version="MatchInstalled">
+    <Product ID="ProjectProRetail">
+      <Language ID="MatchInstalled" TargetProduct="All" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Lync" />
+    </Product>
+  </Add>
+</Configuration>

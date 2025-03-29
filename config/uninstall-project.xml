@@ -1,0 +1,7 @@
+<Configuration>
+ <Remove>
+    <Product ID="ProjectProRetail" >
+      <Language ID="en-us" />
+    </Product>
+ </Remove>
+</Configuration>

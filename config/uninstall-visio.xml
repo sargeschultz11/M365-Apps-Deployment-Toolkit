@@ -1,0 +1,7 @@
+<Configuration>
+ <Remove>
+    <Product ID="VisioProRetail" >
+      <Language ID="en-us" />
+    </Product>
+ </Remove>
+</Configuration>
