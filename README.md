@@ -121,7 +121,7 @@ The PowerShell script supports several parameters that can be modified:
 
 ## Product Detection
 
-The script includes a comprehensive `Test-OfficeInstalled` function that detects:
+The script includes a comprehensive `Test-ProductInstalled` function that detects:
 - Microsoft 365 Apps (various SKUs)
 - Office 2019, 2021, and 2024 products (Retail & Volume)
 - Visio (all editions)
