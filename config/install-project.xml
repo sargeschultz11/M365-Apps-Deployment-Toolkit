@@ -6,4 +6,5 @@
       <ExcludeApp ID="Lync" />
     </Product>
   </Add>
+  <Display Level="None" AcceptEULA="TRUE" />
 </Configuration>

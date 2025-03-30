@@ -11,13 +11,18 @@
 
 ## Overview
 
-This package provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project via Microsoft Intune as Win32 applications. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
+This toolkit provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project in managed environments. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
+
+Whether you're an MSP managing multiple clients, an IT professional in an enterprise environment, or deploying via Microsoft Intune, this toolkit simplifies the deployment process and handles common challenges like removing pre-installed consumer Office versions.
 
 ## Features
 
 - Automatically downloads the latest Office Deployment Tool
 - Includes ready-to-use XML configurations for Microsoft 365 Apps, Visio, and Project
-- Comprehensive detection of all Microsoft 365 product IDs across multiple languages
+- **Consumer Office Removal**: Automatically detects and removes pre-installed consumer versions of Office
+- **Comprehensive Detection**: Identifies Microsoft 365 products, Office 2019-2024, Visio, and Project across multiple languages
+- **Multiple Installation Options**: Supports forcing installation, uninstalling existing products, detection-only mode, and more
+- **Microsoft Store Apps Detection**: Identifies Office apps installed from the Microsoft Store
 - Provides detailed logging for troubleshooting
 - Handles the entire installation process including cleanup
 - Supports system restart option after installation
@@ -31,7 +36,10 @@ M365-Intune-Deployment-Toolkit/
 │   ├── install-office365.xml      # Microsoft 365 Apps installation configuration
 │   ├── install-visio.xml          # Visio installation configuration
 │   ├── install-project.xml        # Project installation configuration
-│   └── uninstall-office365.xml    # Office uninstallation configuration
+│   ├── uninstall-office365.xml    # Office uninstallation configuration
+│   ├── uninstall-visio.xml        # Visio uninstallation configuration
+│   ├── uninstall-project.xml      # Project uninstallation configuration
+│   └── uninstall-consumer.xml     # Consumer Office uninstallation configuration
 ├── assets/                        # Assets for Company Portal app listings
 │   ├── office365-icon.png         # Microsoft 365 Apps icon
 │   ├── visio-icon.png             # Visio icon
@@ -42,15 +50,19 @@ M365-Intune-Deployment-Toolkit/
 
 ## Quick Start
 
-This package is designed to be immediately usable without modifications:
+This toolkit is designed to be immediately usable without modifications:
 
 1. Download the current release from the releases page, fork, or clone this repo
-2. Package the entire contents using the Microsoft Win32 Content Prep Tool
-3. Upload to Intune and deploy
+2. Choose your deployment method:
+   - Run directly on systems that need Microsoft 365 Apps
+   - Deploy through your RMM tool or management platform
+   - Package for Intune or SCCM deployment
+   - Include in your client onboarding automation
 
-The package includes:
+The toolkit includes:
 - A comprehensive PowerShell script with robust product detection
 - Pre-configured XML files for common Microsoft 365 products
+- Consumer Office detection and removal capabilities
 
 
 ## Requirements
@@ -72,6 +84,7 @@ The included XML files are ready to use, but you can (and I strongly recommend y
 - **uninstall-office365.xml**: Office uninstallation configuration
 - **uninstall-visio.xml**: Visio uninstallation configuration
 - **uninstall-project.xml**: Project uninstallation configuration
+- **uninstall-consumer.xml**: Consumer Office uninstallation configuration
 
 You can create custom configurations using the [Microsoft 365 Apps Admin Center](https://config.office.com/officeSettings/configurations).
 
@@ -82,18 +95,54 @@ The PowerShell script supports several parameters that can be modified:
 - **ConfigXMLPath**: Path to the XML configuration file
 - **OfficeInstallDownloadPath**: Temporary directory for installation files
 - **Restart**: Switch to enable automatic restart after installation
+- **RemoveConsumerOffice**: Switch to enable detection and removal of pre-installed consumer Office products
+- **Force**: Switch to install even if Office is already detected on the system
+- **UninstallExisting**: Switch to remove existing Office products before installation
+- **SkipIfInstalled**: Switch to skip installation if any Office product is detected (default behavior)
+- **DetectOnly**: Switch to only detect Office products without installation (useful for inventory)
 
-## Deployment in Intune
+## Deployment Options
+
+### For MSPs and IT Professionals
+
+This toolkit can be used in various deployment scenarios:
+
+1. **Manual Deployment**: Run the script directly on client machines
+2. **RMM Tool Deployment**: Deploy via your RMM platform of choice (ConnectWise Automate, Datto RMM, NinjaOne, etc.)
+3. **SCCM/ConfigMgr Deployment**: Package as an application in Configuration Manager
+4. **Group Policy Deployment**: Deploy via startup/login scripts or scheduled tasks
+
+The script accepts parameters allowing for flexible deployment options and silent operation.
+
+### For Intune Deployment
 
 1. Package this entire directory using the Microsoft Win32 Content Prep Tool
 2. Upload the .intunewin file to Intune
 3. Configure the application with these settings:
 
 > **Company Portal Assets**: The `assets` folder contains icons and description content you can use when publishing your app in the Company Portal. This helps provide a professional and consistent appearance for end-users.
-   - **Install command:** 
+   - **Standard installation command:** 
    
    ```powershell
    PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml"
+   ```
+
+   - **Installation command with consumer Office removal:** 
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice
+   ```
+
+   - **Installation command that forces installation even if Office is already installed:**
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -Force
+   ```
+
+   - **Installation command that uninstalls existing Office products first:**
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -UninstallExisting
    ```
 
    - **Uninstall command:** 
@@ -131,12 +180,75 @@ The PowerShell script supports several parameters that can be modified:
 ## Product Detection
 
 The script includes a comprehensive `Test-ProductInstalled` function that detects:
+
 - Microsoft 365 Apps (various SKUs)
-- Office 2019, 2021, and 2024 products (Retail & Volume)
-- Visio (all editions)
-- Project (all editions)
+- Office 2010, 2013, 2016, 2019, 2021, and 2024 products (Retail & Volume)
+- Visio 2010-2024 (Standard and Professional editions)
+- Project 2010-2024 (Standard and Professional editions)
 - Installations in multiple languages
 - Various registry locations for complete coverage
+- Click-to-Run installations via configuration keys
+- Office application executable paths
+- Office install root registry keys
+- Generic detection through uninstall registry entries
+
+The detection logic uses multiple methods to ensure the most accurate results, including:
+1. Product-specific uninstall registry keys
+2. Click-to-Run configuration detection
+3. Office application executable paths
+4. Office install root registry keys
+5. Generic search through uninstall registry entries
+
+## Consumer Office Detection and Removal
+
+The script now includes enhanced functionality to detect and remove pre-installed consumer versions of Office that often come on OEM Windows installations. This helps prevent conflicts and ensures a clean installation environment - a common challenge for MSPs and IT departments dealing with new devices.
+
+The consumer Office detection and removal functionality:
+
+- Detects Home & Student, Personal, and OEM versions of Office
+- Identifies Microsoft Store Office apps
+- Automatically removes them using the Office Deployment Tool
+- Provides detailed logging of the removal process
+- Continues with installation even if some components can't be fully removed
+
+To use this feature, simply add the `-RemoveConsumerOffice` switch to your installation command:
+
+```powershell
+# Example for direct execution or RMM deployment
+.\Install-Microsoft365Apps.ps1 -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice
+
+# Example with additional options for automated deployment
+.\Install-Microsoft365Apps.ps1 -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice -OfficeInstallDownloadPath "C:\Temp\OfficeInstall"
+```
+
+This feature is particularly valuable for:
+- Client onboarding scenarios
+- New device deployments
+- Standardizing environments across multiple clients
+- Transitioning from consumer to business Microsoft 365 subscriptions
+
+## Installation Options
+
+The script supports several installation modes to handle different scenarios:
+
+- **Default behavior**: Checks if Office is installed and skips installation if detected
+- **Force Installation**: Uses the `-Force` parameter to explicitly force installation even if Office is already detected
+- **Uninstall Existing**: Uses the `-UninstallExisting` parameter to remove existing Office products before installation
+- **Skip If Installed**: Uses the `-SkipIfInstalled` parameter to explicitly skip installation if Office is detected (same as default behavior, but makes intent explicit)
+- **Detection Only**: Uses the `-DetectOnly` parameter to only check for Office products without installing (useful for inventory)
+
+Example usage:
+
+```powershell
+# Only detect Office products and report findings (useful for inventory)
+.\Install-Microsoft365Apps.ps1 -DetectOnly
+
+# Uninstall existing Office products before installing new ones
+.\Install-Microsoft365Apps.ps1 -UninstallExisting -ConfigXMLPath "config\install-office365.xml"
+
+# Force installation even if Office is already installed
+.\Install-Microsoft365Apps.ps1 -Force -ConfigXMLPath "config\install-office365.xml"
+```
 
 ## Troubleshooting
 
@@ -145,16 +257,20 @@ Installation logs are saved in the system temp directory with the naming pattern
 
 These logs contain detailed information about each step of the installation process and any errors that may have occurred.
 
-## Company Portal Integration
+## Integration and Branding
 
-The `assets` folder contains resources you can use to enhance the appearance of your Microsoft 365 apps in the Intune Company Portal:
+The `assets` folder contains resources you can use in various deployment scenarios:
 
 - **Icons**: High-quality application icons for Microsoft 365 Apps, Visio, and Project
 - **Description Files**: Ready-to-use description text for each application
 
+These assets help create a more professional and consistent experience for end users, whether you're:
 
-
-These assets help create a more professional and consistent experience for end users accessing applications through the Company Portal.
+- Creating documentation for clients
+- Building a self-service portal
+- Configuring Intune Company Portal listings
+- Adding applications to SCCM Software Center
+- Creating custom deployment notifications
 
 ## Getting Started with This Repository
 
@@ -189,12 +305,19 @@ Contributions to improve this package are welcome! Here's how to contribute:
 
 All contributions should focus on improving reliability, adding features, or enhancing documentation.
 
-## Maintenance and Lifecycle Policy
+## Version History
 
-* Included product IDs will remain in the script as long as they are supported by Microsoft
-* When a Microsoft product reaches End of Life (EOL) and is no longer supported by Microsoft, its product ID will be removed from the script in a future update
-* Major updates typically coincide with new Office release cycles
-* Critical bugs will be addressed as quickly as possible
+### Versions 1.1/1.2 (March 30, 2025)
+- Expanded support for older Office products
+- Enhanced consumer Office detection and removal functionality
+- Added new installation modes: Force, UninstallExisting, SkipIfInstalled, and DetectOnly
+- Improved product detection with multiple methods
+- Added Microsoft Store Office apps detection
+- Added support for handling multiple languages in product detection
+- Fixed logic for skipping installation when Office is already installed
+- Improved parameter handling logic
+
+
 
 ## License
 
