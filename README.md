@@ -6,7 +6,7 @@
 [![Maintained](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Deployment-Toolkit/graphs/commit-activity)
 [![Downloads](https://img.shields.io/github/downloads/sargeschultz11/m365-deployment-toolkit/total.svg)](https://github.com/sargeschultz11/m365-deployment-toolkit/releases)
 [![Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](https://github.com/sargeschultz11/M365-Deployment-Toolkit/graphs/contributors)
-[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
 
 ## Overview
 
