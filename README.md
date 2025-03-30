@@ -2,10 +2,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue.svg)](https://github.com/PowerShell/PowerShell)
-[![Office](https://img.shields.io/badge/Microsoft_365-compatible-brightgreen.svg)](https://www.microsoft.com/microsoft-365)
-[![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/commit-activity)
-[![Download Count](https://img.shields.io/github/downloads/sargeschultz11/M365-Apps-Deployment-Toolkit/total.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/releases)
-[![Contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/contributors)
+[![Microsoft 365](https://img.shields.io/badge/Microsoft_365-compatible-brightgreen.svg)](https://www.microsoft.com/microsoft-365)
+[![Maintained](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Deployment-Toolkit/graphs/commit-activity)
+[![Downloads](https://img.shields.io/github/downloads/sargeschultz11/M365-Deployment-Toolkit/total.svg)](https://github.com/sargeschultz11/M365-Deployment-Toolkit/releases)
+[![Contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Deployment-Toolkit.svg)](https://github.com/sargeschultz11/M365-Deployment-Toolkit/graphs/contributors)
 
 ## Overview
 
