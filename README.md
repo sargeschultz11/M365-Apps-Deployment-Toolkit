@@ -182,9 +182,9 @@ The script accepts parameters allowing for flexible deployment options and silen
 The script includes a comprehensive `Test-ProductInstalled` function that detects:
 
 - Microsoft 365 Apps (various SKUs)
-- Office 2019, 2021, and 2024 products (Retail & Volume)
-- Visio (all editions)
-- Project (all editions)
+- Office 2010, 2013, 2016, 2019, 2021, and 2024 products (Retail & Volume)
+- Visio 2010-2024 (Standard and Professional editions)
+- Project 2010-2024 (Standard and Professional editions)
 - Installations in multiple languages
 - Various registry locations for complete coverage
 - Click-to-Run installations via configuration keys
@@ -305,16 +305,9 @@ Contributions to improve this package are welcome! Here's how to contribute:
 
 All contributions should focus on improving reliability, adding features, or enhancing documentation.
 
-## Maintenance and Lifecycle Policy
-
-* Included product IDs will remain in the script as long as they are supported by Microsoft
-* When a Microsoft product reaches End of Life (EOL) and is no longer supported by Microsoft, its product ID will be removed from the script in a future update
-* Major updates typically coincide with new Office release cycles
-* Critical bugs will be addressed as quickly as possible
-
 ## Version History
 
-### Version 1.2 (March 30, 2025)
+### Versions 1.1/1.2 (March 30, 2025)
 - Expanded support for older Office products
 - Enhanced consumer Office detection and removal functionality
 - Added new installation modes: Force, UninstallExisting, SkipIfInstalled, and DetectOnly
