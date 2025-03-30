@@ -1,5 +1,14 @@
 # Microsoft 365 Apps Deployment Toolkit
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue.svg)](https://github.com/PowerShell/PowerShell)
+[![Microsoft 365](https://img.shields.io/badge/Microsoft_365-compatible-brightgreen.svg)](https://www.microsoft.com/microsoft-365)
+[![Maintained](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/commit-activity)
+[![GitHub release](https://img.shields.io/github/release/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://GitHub.com/sargeschultz11/M365-Apps-Deployment-Toolkit/releases/)
+[![GitHub issues](https://img.shields.io/github/issues/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://GitHub.com/sargeschultz11/M365-Apps-Deployment-Toolkit/issues/)
+[![GitHub contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://GitHub.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/contributors/)
+[![made-with-bash](https://img.shields.io/badge/Made%20with-PowerShell-1f425f.svg)](https://www.microsoft.com/powershell)
+
 ## Overview
 
 This package provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project via Microsoft Intune as Win32 applications. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
