@@ -91,7 +91,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$LogFilePath = Join-Path -Path $env:TEMP -ChildPath "Office365Install_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
+$LogFilePath = Join-Path -Path $env:TEMP -ChildPath "Microsoft365Install_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
 
 try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -1035,7 +1035,7 @@ $detectionResult = Test-ProductInstalled -ReturnDetectedProducts -IncludeDetails
 $isOfficeInstalled = $detectionResult[0]
 $detectedProducts = $detectionResult[1]
 
-# Handle detection only mode
+# Handle parameter logic
 if ($DetectOnly) {
     Write-Log -Message "Running in detection-only mode. Skipping installation."
     
@@ -1053,12 +1053,24 @@ if ($DetectOnly) {
     exit 0
 }
 
-# Handle skip if installed mode (default behavior)
-if ($isOfficeInstalled -and (-not $Force) -and (-not $UninstallExisting) -and (-not $PSCmdlet.ParameterSetName -eq 'Force')) {
+# Handle skip if installed mode
+if ($SkipIfInstalled -and $isOfficeInstalled) {
+    Write-Log -Message "Office products are already installed and -SkipIfInstalled specified."
+    Write-Log -Message "Skipping installation."
+    exit 0
+}
+
+# Default behavior (skip if installed unless Force or UninstallExisting is specified)
+if ($isOfficeInstalled -and (-not $Force) -and (-not $UninstallExisting)) {
     Write-Log -Message "Office products are already installed and -Force/-UninstallExisting not specified."
     Write-Log -Message "Skipping installation. Use -Force to install anyway or -UninstallExisting to remove existing products first."
     exit 0
 }
+
+# At this point, we proceed with installation because:
+# 1. No Office is installed, OR
+# 2. Force parameter was specified, OR
+# 3. UninstallExisting parameter was specified
 
 # If we need to continue with installation, validate the configuration file
 if (-not (Test-Path -Path $ConfigXMLPath)) {

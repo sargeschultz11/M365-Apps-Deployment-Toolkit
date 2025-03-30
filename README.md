@@ -20,7 +20,9 @@ Whether you're an MSP managing multiple clients, an IT professional in an enterp
 - Automatically downloads the latest Office Deployment Tool
 - Includes ready-to-use XML configurations for Microsoft 365 Apps, Visio, and Project
 - **Consumer Office Removal**: Automatically detects and removes pre-installed consumer versions of Office
-- Comprehensive detection of all Microsoft 365 product IDs across multiple languages
+- **Comprehensive Detection**: Identifies Microsoft 365 products, Office 2019-2024, Visio, and Project across multiple languages
+- **Multiple Installation Options**: Supports forcing installation, uninstalling existing products, detection-only mode, and more
+- **Microsoft Store Apps Detection**: Identifies Office apps installed from the Microsoft Store
 - Provides detailed logging for troubleshooting
 - Handles the entire installation process including cleanup
 - Supports system restart option after installation
@@ -94,6 +96,10 @@ The PowerShell script supports several parameters that can be modified:
 - **OfficeInstallDownloadPath**: Temporary directory for installation files
 - **Restart**: Switch to enable automatic restart after installation
 - **RemoveConsumerOffice**: Switch to enable detection and removal of pre-installed consumer Office products
+- **Force**: Switch to install even if Office is already detected on the system
+- **UninstallExisting**: Switch to remove existing Office products before installation
+- **SkipIfInstalled**: Switch to skip installation if any Office product is detected (default behavior)
+- **DetectOnly**: Switch to only detect Office products without installation (useful for inventory)
 
 ## Deployment Options
 
@@ -125,6 +131,18 @@ The script accepts parameters allowing for flexible deployment options and silen
    
    ```powershell
    PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice
+   ```
+
+   - **Installation command that forces installation even if Office is already installed:**
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -Force
+   ```
+
+   - **Installation command that uninstalls existing Office products first:**
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -UninstallExisting
    ```
 
    - **Uninstall command:** 
@@ -162,16 +180,28 @@ The script accepts parameters allowing for flexible deployment options and silen
 ## Product Detection
 
 The script includes a comprehensive `Test-ProductInstalled` function that detects:
+
 - Microsoft 365 Apps (various SKUs)
 - Office 2019, 2021, and 2024 products (Retail & Volume)
 - Visio (all editions)
 - Project (all editions)
 - Installations in multiple languages
 - Various registry locations for complete coverage
+- Click-to-Run installations via configuration keys
+- Office application executable paths
+- Office install root registry keys
+- Generic detection through uninstall registry entries
+
+The detection logic uses multiple methods to ensure the most accurate results, including:
+1. Product-specific uninstall registry keys
+2. Click-to-Run configuration detection
+3. Office application executable paths
+4. Office install root registry keys
+5. Generic search through uninstall registry entries
 
 ## Consumer Office Detection and Removal
 
-The script now includes functionality to detect and remove pre-installed consumer versions of Office that often come on OEM Windows installations. This helps prevent conflicts and ensures a clean installation environment - a common challenge for MSPs and IT departments dealing with new devices.
+The script now includes enhanced functionality to detect and remove pre-installed consumer versions of Office that often come on OEM Windows installations. This helps prevent conflicts and ensures a clean installation environment - a common challenge for MSPs and IT departments dealing with new devices.
 
 The consumer Office detection and removal functionality:
 
@@ -196,6 +226,29 @@ This feature is particularly valuable for:
 - New device deployments
 - Standardizing environments across multiple clients
 - Transitioning from consumer to business Microsoft 365 subscriptions
+
+## Installation Options
+
+The script supports several installation modes to handle different scenarios:
+
+- **Default behavior**: Checks if Office is installed and skips installation if detected
+- **Force Installation**: Uses the `-Force` parameter to explicitly force installation even if Office is already detected
+- **Uninstall Existing**: Uses the `-UninstallExisting` parameter to remove existing Office products before installation
+- **Skip If Installed**: Uses the `-SkipIfInstalled` parameter to explicitly skip installation if Office is detected (same as default behavior, but makes intent explicit)
+- **Detection Only**: Uses the `-DetectOnly` parameter to only check for Office products without installing (useful for inventory)
+
+Example usage:
+
+```powershell
+# Only detect Office products and report findings (useful for inventory)
+.\Install-Microsoft365Apps.ps1 -DetectOnly
+
+# Uninstall existing Office products before installing new ones
+.\Install-Microsoft365Apps.ps1 -UninstallExisting -ConfigXMLPath "config\install-office365.xml"
+
+# Force installation even if Office is already installed
+.\Install-Microsoft365Apps.ps1 -Force -ConfigXMLPath "config\install-office365.xml"
+```
 
 ## Troubleshooting
 
@@ -258,6 +311,20 @@ All contributions should focus on improving reliability, adding features, or enh
 * When a Microsoft product reaches End of Life (EOL) and is no longer supported by Microsoft, its product ID will be removed from the script in a future update
 * Major updates typically coincide with new Office release cycles
 * Critical bugs will be addressed as quickly as possible
+
+## Version History
+
+### Version 1.2 (March 30, 2025)
+- Expanded support for older Office products
+- Enhanced consumer Office detection and removal functionality
+- Added new installation modes: Force, UninstallExisting, SkipIfInstalled, and DetectOnly
+- Improved product detection with multiple methods
+- Added Microsoft Store Office apps detection
+- Added support for handling multiple languages in product detection
+- Fixed logic for skipping installation when Office is already installed
+- Improved parameter handling logic
+
+
 
 ## License
 
