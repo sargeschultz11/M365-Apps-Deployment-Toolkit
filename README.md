@@ -1,4 +1,4 @@
-# Microsoft 365 Apps Deployment Package for Intune
+# Microsoft 365 Apps Deployment Toolkit
 
 ## Overview
 
