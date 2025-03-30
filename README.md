@@ -1,13 +1,16 @@
-# Microsoft 365 Apps Deployment Package for Intune
+# Microsoft 365 Apps Deployment Toolkit
 
 ## Overview
 
-This package provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project via Microsoft Intune as Win32 applications. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
+This toolkit provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project in managed environments. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
+
+Whether you're an MSP managing multiple clients, an IT professional in an enterprise environment, or deploying via Microsoft Intune, this toolkit simplifies the deployment process and handles common challenges like removing pre-installed consumer Office versions.
 
 ## Features
 
 - Automatically downloads the latest Office Deployment Tool
 - Includes ready-to-use XML configurations for Microsoft 365 Apps, Visio, and Project
+- **Consumer Office Removal**: Automatically detects and removes pre-installed consumer versions of Office
 - Comprehensive detection of all Microsoft 365 product IDs across multiple languages
 - Provides detailed logging for troubleshooting
 - Handles the entire installation process including cleanup
@@ -22,7 +25,10 @@ M365-Intune-Deployment-Toolkit/
 │   ├── install-office365.xml      # Microsoft 365 Apps installation configuration
 │   ├── install-visio.xml          # Visio installation configuration
 │   ├── install-project.xml        # Project installation configuration
-│   └── uninstall-office365.xml    # Office uninstallation configuration
+│   ├── uninstall-office365.xml    # Office uninstallation configuration
+│   ├── uninstall-visio.xml        # Visio uninstallation configuration
+│   ├── uninstall-project.xml      # Project uninstallation configuration
+│   └── uninstall-consumer.xml     # Consumer Office uninstallation configuration
 ├── assets/                        # Assets for Company Portal app listings
 │   ├── office365-icon.png         # Microsoft 365 Apps icon
 │   ├── visio-icon.png             # Visio icon
@@ -33,15 +39,19 @@ M365-Intune-Deployment-Toolkit/
 
 ## Quick Start
 
-This package is designed to be immediately usable without modifications:
+This toolkit is designed to be immediately usable without modifications:
 
 1. Download the current release from the releases page, fork, or clone this repo
-2. Package the entire contents using the Microsoft Win32 Content Prep Tool
-3. Upload to Intune and deploy
+2. Choose your deployment method:
+   - Run directly on systems that need Microsoft 365 Apps
+   - Deploy through your RMM tool or management platform
+   - Package for Intune or SCCM deployment
+   - Include in your client onboarding automation
 
-The package includes:
+The toolkit includes:
 - A comprehensive PowerShell script with robust product detection
 - Pre-configured XML files for common Microsoft 365 products
+- Consumer Office detection and removal capabilities
 
 
 ## Requirements
@@ -63,6 +73,7 @@ The included XML files are ready to use, but you can (and I strongly recommend y
 - **uninstall-office365.xml**: Office uninstallation configuration
 - **uninstall-visio.xml**: Visio uninstallation configuration
 - **uninstall-project.xml**: Project uninstallation configuration
+- **uninstall-consumer.xml**: Consumer Office uninstallation configuration
 
 You can create custom configurations using the [Microsoft 365 Apps Admin Center](https://config.office.com/officeSettings/configurations).
 
@@ -73,18 +84,38 @@ The PowerShell script supports several parameters that can be modified:
 - **ConfigXMLPath**: Path to the XML configuration file
 - **OfficeInstallDownloadPath**: Temporary directory for installation files
 - **Restart**: Switch to enable automatic restart after installation
+- **RemoveConsumerOffice**: Switch to enable detection and removal of pre-installed consumer Office products
 
-## Deployment in Intune
+## Deployment Options
+
+### For MSPs and IT Professionals
+
+This toolkit can be used in various deployment scenarios:
+
+1. **Manual Deployment**: Run the script directly on client machines
+2. **RMM Tool Deployment**: Deploy via your RMM platform of choice (ConnectWise Automate, Datto RMM, NinjaOne, etc.)
+3. **SCCM/ConfigMgr Deployment**: Package as an application in Configuration Manager
+4. **Group Policy Deployment**: Deploy via startup/login scripts or scheduled tasks
+
+The script accepts parameters allowing for flexible deployment options and silent operation.
+
+### For Intune Deployment
 
 1. Package this entire directory using the Microsoft Win32 Content Prep Tool
 2. Upload the .intunewin file to Intune
 3. Configure the application with these settings:
 
 > **Company Portal Assets**: The `assets` folder contains icons and description content you can use when publishing your app in the Company Portal. This helps provide a professional and consistent appearance for end-users.
-   - **Install command:** 
+   - **Standard installation command:** 
    
    ```powershell
    PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml"
+   ```
+
+   - **Installation command with consumer Office removal:** 
+   
+   ```powershell
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice
    ```
 
    - **Uninstall command:** 
@@ -129,6 +160,34 @@ The script includes a comprehensive `Test-ProductInstalled` function that detect
 - Installations in multiple languages
 - Various registry locations for complete coverage
 
+## Consumer Office Detection and Removal
+
+The script now includes functionality to detect and remove pre-installed consumer versions of Office that often come on OEM Windows installations. This helps prevent conflicts and ensures a clean installation environment - a common challenge for MSPs and IT departments dealing with new devices.
+
+The consumer Office detection and removal functionality:
+
+- Detects Home & Student, Personal, and OEM versions of Office
+- Identifies Microsoft Store Office apps
+- Automatically removes them using the Office Deployment Tool
+- Provides detailed logging of the removal process
+- Continues with installation even if some components can't be fully removed
+
+To use this feature, simply add the `-RemoveConsumerOffice` switch to your installation command:
+
+```powershell
+# Example for direct execution or RMM deployment
+.\Install-Microsoft365Apps.ps1 -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice
+
+# Example with additional options for automated deployment
+.\Install-Microsoft365Apps.ps1 -ConfigXMLPath "config\install-office365.xml" -RemoveConsumerOffice -OfficeInstallDownloadPath "C:\Temp\OfficeInstall"
+```
+
+This feature is particularly valuable for:
+- Client onboarding scenarios
+- New device deployments
+- Standardizing environments across multiple clients
+- Transitioning from consumer to business Microsoft 365 subscriptions
+
 ## Troubleshooting
 
 Installation logs are saved in the system temp directory with the naming pattern:
@@ -136,16 +195,20 @@ Installation logs are saved in the system temp directory with the naming pattern
 
 These logs contain detailed information about each step of the installation process and any errors that may have occurred.
 
-## Company Portal Integration
+## Integration and Branding
 
-The `assets` folder contains resources you can use to enhance the appearance of your Microsoft 365 apps in the Intune Company Portal:
+The `assets` folder contains resources you can use in various deployment scenarios:
 
 - **Icons**: High-quality application icons for Microsoft 365 Apps, Visio, and Project
 - **Description Files**: Ready-to-use description text for each application
 
+These assets help create a more professional and consistent experience for end users, whether you're:
 
-
-These assets help create a more professional and consistent experience for end users accessing applications through the Company Portal.
+- Creating documentation for clients
+- Building a self-service portal
+- Configuring Intune Company Portal listings
+- Adding applications to SCCM Software Center
+- Creating custom deployment notifications
 
 ## Getting Started with This Repository
 
