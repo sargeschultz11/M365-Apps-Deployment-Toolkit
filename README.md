@@ -1,5 +1,13 @@
 # Microsoft 365 Apps Deployment Toolkit
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1+-blue.svg)](https://github.com/PowerShell/PowerShell)
+[![Office](https://img.shields.io/badge/Microsoft_365-compatible-brightgreen.svg)](https://www.microsoft.com/microsoft-365)
+[![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/commit-activity)
+[![Download Count](https://img.shields.io/github/downloads/sargeschultz11/M365-Apps-Deployment-Toolkit/total.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/releases)
+[![Contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/contributors)
+[![Join Discord](https://img.shields.io/discord/012345678901234567?color=7289da&label=discord&logo=discord&logoColor=white)](https://discord.gg/your-discord-invite)
+
 ## Overview
 
 This toolkit provides an automated solution for deploying Microsoft 365 Apps, Visio, and Project in managed environments. It combines the power of the Office Deployment Tool (ODT) with PowerShell scripting to provide a reliable, consistent installation experience across multiple Microsoft products.
