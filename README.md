@@ -6,7 +6,6 @@
 [![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/commit-activity)
 [![Download Count](https://img.shields.io/github/downloads/sargeschultz11/M365-Apps-Deployment-Toolkit/total.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/releases)
 [![Contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/contributors)
-[![Join Discord](https://img.shields.io/discord/012345678901234567?color=7289da&label=discord&logo=discord&logoColor=white)](https://discord.gg/your-discord-invite)
 
 ## Overview
 
