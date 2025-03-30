@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+ <Remove All="True">
+    <Product ID="HomeBusiness2019Retail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="HomeBusinessRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="HomeStudent2019Retail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="HomeStudentRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="Personal2019Retail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="PersonalRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="HomeStudentVNextRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="HomeBusinessVNextRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="MondoRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="O365HomePremRetail">
+      <Language ID="MatchOS" />
+    </Product>
+    <Product ID="O365SmallBusPremRetail">
+      <Language ID="MatchOS" />
+    </Product>
+ </Remove>
+ <Display Level="None" AcceptEULA="TRUE" />
+</Configuration>
