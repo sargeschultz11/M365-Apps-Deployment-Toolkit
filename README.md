@@ -253,7 +253,7 @@ Example usage:
 ## Troubleshooting
 
 Installation logs are saved in the system temp directory with the naming pattern:
-`Office365Install_YYYYMMDD_HHMMSS.log`
+`Microsoft365Install_YYYYMMDD_HHMMSS.log`
 
 These logs contain detailed information about each step of the installation process and any errors that may have occurred.
 
