@@ -1064,10 +1064,13 @@ if ($SkipIfInstalled -and $isOfficeInstalled) {
 }
 
 if ($Uninstall) {
+    Write-Log -Message "Running in uninstall mode."
     if (-not $isOfficeInstalled) {
         Write-Log -Message "No Office products detected to uninstall. Skipping uninstallation."
         exit 0
     }
+    # When running in uninstall mode, we don't want to run UninstallExisting logic later
+    $UninstallExisting = $false
 }
 
 # Default behavior (skip if installed unless Force or UninstallExisting is specified)
@@ -1176,23 +1179,40 @@ catch {
 #===============================================================================#
 # Step 7: Verify installation and cleanup                                       #
 #===============================================================================#
-Write-Log -Message "Verifying installation..."
-if (Test-ProductInstalled) {
-    Write-Log -Message "Microsoft 365 installed successfully!" -Type "SUCCESS"
-    
-    # Only clean up installation files after successful verification
-    Write-Log -Message "Cleaning up installation files..."
-    Remove-Item -Path $OfficeInstallDownloadPath -Force -Recurse -ErrorAction SilentlyContinue
-    
-    if ($Restart) {
-        Write-Log -Message "Restarting computer in 60 seconds..."
-        Start-Process shutdown.exe -ArgumentList "-r -t 60" -NoNewWindow
+Write-Log -Message "Verifying operation..."
+
+if ($Uninstall) {
+    if (-not (Test-ProductInstalled)) {
+        Write-Log -Message "Office products successfully uninstalled!" -Type "SUCCESS"
+        
+        Write-Log -Message "Cleaning up installation files..."
+        Remove-Item -Path $OfficeInstallDownloadPath -Force -Recurse -ErrorAction SilentlyContinue
+        
+        exit 0
     }
-    
-    exit 0
+    else {
+        Write-Log -Message "Some Office products still detected after uninstallation! Verification failed." -Type "WARNING"
+        Write-Log -Message "Leaving installation files at $OfficeInstallDownloadPath for troubleshooting." -Type "WARNING"
+        exit 1
+    }
 }
 else {
-    Write-Log -Message "Microsoft 365 was not detected after installation! Verification failed." -Type "WARNING"
-    Write-Log -Message "Leaving installation files at $OfficeInstallDownloadPath for troubleshooting." -Type "WARNING"
-    exit 1
+    if (Test-ProductInstalled) {
+        Write-Log -Message "Microsoft 365 installed successfully!" -Type "SUCCESS"
+        
+        Write-Log -Message "Cleaning up installation files..."
+        Remove-Item -Path $OfficeInstallDownloadPath -Force -Recurse -ErrorAction SilentlyContinue
+        
+        if ($Restart) {
+            Write-Log -Message "Restarting computer in 60 seconds..."
+            Start-Process shutdown.exe -ArgumentList "-r -t 60" -NoNewWindow
+        }
+        
+        exit 0
+    }
+    else {
+        Write-Log -Message "Microsoft 365 was not detected after installation! Verification failed." -Type "WARNING"
+        Write-Log -Message "Leaving installation files at $OfficeInstallDownloadPath for troubleshooting." -Type "WARNING"
+        exit 1
+    }
 }
