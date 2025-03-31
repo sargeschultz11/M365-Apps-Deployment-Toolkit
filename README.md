@@ -94,6 +94,7 @@ The PowerShell script supports several parameters that can be modified:
 
 - **ConfigXMLPath**: Path to the XML configuration file
 - **OfficeInstallDownloadPath**: Temporary directory for installation files
+- **Uninstall**: Swtich to be used for standard uninstallation process
 - **Restart**: Switch to enable automatic restart after installation
 - **RemoveConsumerOffice**: Switch to enable detection and removal of pre-installed consumer Office products
 - **Force**: Switch to install even if Office is already detected on the system
@@ -148,7 +149,7 @@ The script accepts parameters allowing for flexible deployment options and silen
    - **Uninstall command:** 
    
    ```powershell
-   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\uninstall-office365.xml"
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\uninstall-office365.xml" -Uninstall
    ```
 
    - **For Visio installation:**

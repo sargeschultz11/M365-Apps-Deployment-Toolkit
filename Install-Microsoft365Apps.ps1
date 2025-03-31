@@ -73,6 +73,9 @@ param(
     
     [Parameter()]
     [Switch]$Restart,
+
+    [Parameter()]
+    [Switch]$Uninstall,
     
     [Parameter()]
     [Switch]$RemoveConsumerOffice,
@@ -1058,6 +1061,13 @@ if ($SkipIfInstalled -and $isOfficeInstalled) {
     Write-Log -Message "Office products are already installed and -SkipIfInstalled specified."
     Write-Log -Message "Skipping installation."
     exit 0
+}
+
+if ($Uninstall) {
+    if (-not $isOfficeInstalled) {
+        Write-Log -Message "No Office products detected to uninstall. Skipping uninstallation."
+        exit 0
+    }
 }
 
 # Default behavior (skip if installed unless Force or UninstallExisting is specified)
