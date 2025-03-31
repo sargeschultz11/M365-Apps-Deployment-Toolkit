@@ -1,11 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Microsoft 365 Apps for Business Installation Configuration
+  =========================================================
+  
+  This configuration file controls how Microsoft 365 Apps are installed.
+  
+  HOW TO USE THIS FILE:
+  - Uncomment (remove the comment markers) sections you want to enable
+  - Modify values according to your requirements
+  - Leave commented sections as-is to use default values
+  
+  MAJOR SECTIONS:
+  1. Add - Controls which products and features to install
+  2. Remove - Controls which products to remove
+  3. Updates - Controls update settings
+  4. Display - Controls UI during installation
+  5. Property - Sets various installation properties
+  6. RemoveMSI - Controls removal of MSI-based Office
+-->
+
 <Configuration ID="6dbbe3cd-54c5-4e05-9b7f-0123922eb34f">
-  <Add OfficeClientEdition="64" Channel="MonthlyEnterprise">
+  
+  <!-- ============================================================== -->
+  <!-- PRODUCT SELECTION                                              -->
+  <!-- ============================================================== -->
+  <Add Channel="MonthlyEnterprise">
+    
+    <!-- Microsoft 365 Apps for Business -->
     <Product ID="O365BusinessRetail">
+      <!-- Language Selection -->
+      <!-- Option 1: Match system language (recommended) -->
+      <Language ID="MatchOS" />
+      
+      <!-- Option 2: Specific language (uncomment and modify as needed) -->
+      <!-- <Language ID="en-us" /> -->
+      
+      <!-- ========================================================== -->
+      <!-- EXCLUDED APPLICATIONS                                      -->
+      <!-- To exclude an app, uncomment the appropriate line          -->
+      <!-- ========================================================== -->
+      
+      <!-- Excluded by default -->
+      <ExcludeApp ID="Groove" /> <!-- OneDrive for Business legacy sync client -->
+      <ExcludeApp ID="Lync" />   <!-- Skype for Business -->
+      
+      <!-- Core Office Apps - Uncomment to exclude -->
+      <!-- <ExcludeApp ID="Access" /> -->      <!-- Access database tool -->
+      <!-- <ExcludeApp ID="Excel" /> -->       <!-- Excel spreadsheet -->
+      <!-- <ExcludeApp ID="OneNote" /> -->     <!-- OneNote notebook -->
+      <!-- <ExcludeApp ID="Outlook" /> -->     <!-- Outlook email client -->
+      <!-- <ExcludeApp ID="PowerPoint" /> -->  <!-- PowerPoint presentation -->
+      <!-- <ExcludeApp ID="Publisher" /> -->   <!-- Publisher desktop publishing -->
+      <!-- <ExcludeApp ID="Word" /> -->        <!-- Word document editor -->
+      
+      <!-- Additional Tools - Uncomment to exclude -->
+      <!-- <ExcludeApp ID="OneDrive" /> -->    <!-- OneDrive sync client -->
+      <!-- <ExcludeApp ID="Teams" /> -->       <!-- Microsoft Teams -->
+      <!-- <ExcludeApp ID="Bing" /> -->        <!-- Microsoft Search in Bing -->
+    </Product>
+    
+    <!-- ============================================================== -->
+    <!-- ADDITIONAL PRODUCTS (Uncomment to include)                     -->
+    <!-- Note: These require appropriate licenses                       -->
+    <!-- ============================================================== -->
+    
+    <!-- Visio Pro -->
+    <!-- 
+    <Product ID="VisioProRetail">
       <Language ID="MatchOS" />
       <ExcludeApp ID="Groove" />
       <ExcludeApp ID="Lync" />
     </Product>
+    -->
+    
+    <!-- Project Pro -->
+    <!-- 
+    <Product ID="ProjectProRetail">
+      <Language ID="MatchOS" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Lync" />
+    </Product>
+    -->
   </Add>
+  
+  <!-- ============================================================== -->
+  <!-- UPDATE CHANNEL OPTIONS                                         -->
+  <!-- Uncomment ONE of these to change the default update channel    -->
+  <!-- ============================================================== -->
+  <!-- 
+  <Updates Channel="MonthlyEnterprise" /> 
+  -->
+  <!-- Monthly Enterprise (recommended for managed environments) -->
+  
+  <!-- 
+  <Updates Channel="Current" /> 
+  -->
+  <!-- Current Channel (monthly updates with latest features) -->
+  
+  <!-- 
+  <Updates Channel="SemiAnnual" /> 
+  -->
+  <!-- Semi-Annual Channel (feature updates twice per year, more stable) -->
+  
+  <!-- 
+  <Updates Channel="SemiAnnualPreview" /> 
+  -->
+  <!-- Semi-Annual Preview Channel (preview of next Semi-Annual release) -->
+  
+  <!-- ============================================================== -->
+  <!-- AUTOMATIC UPDATES CONFIGURATION                                -->
+  <!-- Uncomment to specify update behavior                           -->
+  <!-- ============================================================== -->
+  <!-- 
+  <Updates Enabled="TRUE" /> 
+  -->
+  <!-- Enable automatic updates (default) -->
+  
+  <!-- 
+  <Updates Enabled="FALSE" /> 
+  -->
+  <!-- Disable automatic updates (not recommended) -->
+  
+  <!-- 
+  <Updates DeadLine="YYYY-MM-DDThh:mm:ssZ" /> 
+  -->
+  <!-- Force update by this time (UTC timezone) -->
+  
+  <!-- ============================================================== -->
+  <!-- INSTALLATION UI SETTINGS                                       -->
+  <!-- ============================================================== -->
   <Display Level="None" AcceptEULA="TRUE" />
+  
+  <!-- Alternative UI Options (uncomment to change) -->
+  <!-- 
+  <Display Level="Full" AcceptEULA="TRUE" /> 
+  -->
+  <!-- Show full UI -->
+  
+  <!-- 
+  <Display Level="None" AcceptEULA="TRUE" SuppressModal="TRUE" /> 
+  -->
+  <!-- No UI and suppress error messages -->
+  
+  <!-- ============================================================== -->
+  <!-- INSTALLATION PROPERTIES                                        -->
+  <!-- Uncomment and modify as needed                                 -->
+  <!-- ============================================================== -->
+  <!-- 
+  <Property Name="AUTOACTIVATE" Value="1" />
+  -->
+  <!-- Automatically activate if credentials available -->
+  
+  <!-- 
+  <Property Name="SharedComputerLicensing" Value="1" />
+  -->
+  <!-- Enable shared computer activation (for RDS/VDI) -->
+  
+  <!-- 
+  <Property Name="PinIconsToTaskbar" Value="TRUE" />
+  -->
+  <!-- Pin Office apps to the Windows taskbar -->
+  
+  <!-- 
+  <Property Name="SCLCacheOverride" Value="1" />
+  <Property Name="SCLCacheOverrideDirectory" Value="C:\SCLCache" />
+  -->
+  <!-- Custom token cache location for shared computer licensing -->
+  
+  <!-- 
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+  -->
+  <!-- Force running Office apps to close during installation -->
+  
+  <!-- ============================================================== -->
+  <!-- LOGGING OPTIONS                                                -->
+  <!-- Uncomment to enable detailed logging                           -->
+  <!-- ============================================================== -->
+  <!-- 
+  <Logging Level="Standard" Path="%temp%" />
+  -->
+  <!-- Standard logging -->
+  
+  <!-- 
+  <Logging Level="Verbose" Path="%temp%" />
+  -->
+  <!-- Verbose logging (larger log files) -->
+  
+  <!-- ============================================================== -->
+  <!-- REMOVE MSI VERSIONS OF OFFICE                                 -->
+  <!-- Recommended to keep enabled to avoid conflicts                 -->
+  <!-- ============================================================== -->
   <RemoveMSI />
+  
+  <!-- Alternative MSI removal options -->
+  <!-- 
+  <RemoveMSI IgnoreProduct="VisPro,PrjPro" />
+  -->
+  <!-- Remove MSI Office but keep Visio and Project -->
+  
+  <!-- 
+  <RemoveMSI All="FALSE" />
+  -->
+  <!-- Only remove products being replaced -->
+  
 </Configuration>
