@@ -26,8 +26,18 @@
   <!-- ============================================================== -->
   <Add Channel="MonthlyEnterprise">
     
-    <!-- Microsoft 365 Apps for Business -->
+    <!-- ============================================================ -->
+    <!-- Microsoft 365 Apps for Business                              -->
+    <!-- Uncomment the Product ID you wish to install                 -->
+    <!-- Default configuration for repo is O365BusinessRetail         -->
+    <!-- ============================================================ -->
+
     <Product ID="O365BusinessRetail">
+    <!--<Product ID="O365ProPlusRetail"> -->
+    <!--<Product ID="O365EduCloudRetail"> -->
+    <!--<Product ID="O365HomePremRetail"> -->
+    <!--<Product ID="ProPlus2021Volume"> -->
+    <!--<Product ID="Standard2021Volume"> -->
       <!-- Language Selection -->
       <!-- Option 1: Match system language (recommended) -->
       <Language ID="MatchOS" />
