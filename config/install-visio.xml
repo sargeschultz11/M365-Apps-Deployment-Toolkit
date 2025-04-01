@@ -1,7 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Microsoft Visio Professional Installation Configuration
+  ======================================================
+  
+  This configuration file controls how Microsoft Visio is installed.
+  
+  HOW TO USE THIS FILE:
+  - Uncomment (remove the comment markers) sections you want to enable
+  - Modify values according to your requirements
+  - Leave commented sections as-is to use default values
+-->
+
 <Configuration ID="b5f8e99c-4dd4-4630-a46f-e11f8fc2a13d">
-  <Add Version="MatchInstalled">
-    <Product ID="VisioProRetail">
-      <Language ID="MatchInstalled" TargetProduct="All" />
+  <Add Channel="MonthlyEnterprise">
+    <!-- ============================================================ -->
+    <!-- PRODUCT SELECTION                                            -->
+    <!-- Uncomment the Product ID you wish to install                 -->
+    <!-- Default configuration for repo is VisioProRetail             -->
+    <!-- ============================================================ -->
+    
+    <Product ID="VisioProRetail">  <!-- Visio Professional (Default) -->
+    <!--<Product ID="VisioStdRetail"> -->  <!-- Visio Standard -->
+    <!--<Product ID="VisioPro2021Volume"> -->  <!-- Visio LTSC Professional 2021 -->
+    <!--<Product ID="VisioStd2021Volume"> -->  <!-- Visio LTSC Standard 2021 -->
+      <Language ID="MatchOS" />
       <ExcludeApp ID="Groove" />
       <ExcludeApp ID="Lync" />
     </Product>

@@ -94,6 +94,7 @@ The PowerShell script supports several parameters that can be modified:
 
 - **ConfigXMLPath**: Path to the XML configuration file
 - **OfficeInstallDownloadPath**: Temporary directory for installation files
+- **Uninstall**: Swtich to be used for standard uninstallation process
 - **Restart**: Switch to enable automatic restart after installation
 - **RemoveConsumerOffice**: Switch to enable detection and removal of pre-installed consumer Office products
 - **Force**: Switch to install even if Office is already detected on the system
@@ -148,7 +149,7 @@ The script accepts parameters allowing for flexible deployment options and silen
    - **Uninstall command:** 
    
    ```powershell
-   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\uninstall-office365.xml"
+   PowerShell.exe -NoProfile -ExecutionPolicy Bypass -File "Install-Microsoft365Apps.ps1" -ConfigXMLPath "config\uninstall-office365.xml" -Uninstall
    ```
 
    - **For Visio installation:**
@@ -304,19 +305,6 @@ Contributions to improve this package are welcome! Here's how to contribute:
 6. Create a new Pull Request
 
 All contributions should focus on improving reliability, adding features, or enhancing documentation.
-
-## Version History
-
-### Versions 1.1/1.2 (March 30, 2025)
-- Expanded support for older Office products
-- Enhanced consumer Office detection and removal functionality
-- Added new installation modes: Force, UninstallExisting, SkipIfInstalled, and DetectOnly
-- Improved product detection with multiple methods
-- Added Microsoft Store Office apps detection
-- Added support for handling multiple languages in product detection
-- Fixed logic for skipping installation when Office is already installed
-- Improved parameter handling logic
-
 
 
 ## License

@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Microsoft 365 Apps for Business Uninstallation Configuration
+  ===========================================================
+  
+  This configuration file controls how Microsoft 365 Apps are uninstalled.
+  
+  HOW TO USE THIS FILE:
+  - Uncomment (remove the comment markers) sections you want to enable
+  - Modify values according to your requirements
+  - Leave commented sections as-is to use default values
+-->
+
 <Configuration>
  <Remove>
+    <!-- ============================================================ -->
+    <!-- PRODUCT SELECTION                                            -->
+    <!-- Uncomment the Product ID you wish to uninstall               -->
+    <!-- Default configuration for repo is O365BusinessRetail         -->
+    <!-- ============================================================ -->
+    
     <Product ID="O365BusinessRetail" >
-      <Language ID="en-us" />
+    <!--<Product ID="O365ProPlusRetail" > -->
+    <!--<Product ID="O365EduCloudRetail" > -->
+    <!--<Product ID="O365HomePremRetail" > -->
+    <!--<Product ID="ProPlus2021Volume" > -->
+    <!--<Product ID="Standard2021Volume" > -->
+      <!-- ========================================================== -->
+      <!-- LANGUAGE SELECTION                                         -->
+      <!-- Uncomment the language you wish to uninstall               -->
+      <!-- Default is to match system language                        -->
+      <!-- ========================================================== -->
+      <Language ID="MatchOS" /> <!-- Match installed language (recommended) -->
+      
+      <!-- Common languages - uncomment to specify a particular language -->
+      <!-- <Language ID="en-us" /> --> <!-- English (United States) -->
+      <!-- <Language ID="en-gb" /> --> <!-- English (United Kingdom) -->
+      <!-- <Language ID="fr-fr" /> --> <!-- French (France) -->
+      <!-- <Language ID="de-de" /> --> <!-- German (Germany) -->
+      <!-- <Language ID="es-es" /> --> <!-- Spanish (Spain) -->
+      <!-- <Language ID="it-it" /> --> <!-- Italian (Italy) -->
+      <!-- <Language ID="ja-jp" /> --> <!-- Japanese -->
+      <!-- <Language ID="ko-kr" /> --> <!-- Korean -->
+      <!-- <Language ID="pt-br" /> --> <!-- Portuguese (Brazil) -->
+      <!-- <Language ID="ru-ru" /> --> <!-- Russian -->
+      <!-- <Language ID="zh-cn" /> --> <!-- Chinese (Simplified) -->
+      <!-- <Language ID="zh-tw" /> --> <!-- Chinese (Traditional) -->
     </Product>
  </Remove>
  <Display Level="None" AcceptEULA="TRUE" />

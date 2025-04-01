@@ -1,7 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Microsoft Visio Uninstallation Configuration
+  ===========================================
+  
+  This configuration file controls how Microsoft Visio is uninstalled.
+  
+  HOW TO USE THIS FILE:
+  - Uncomment (remove the comment markers) sections you want to enable
+  - Modify values according to your requirements
+  - Leave commented sections as-is to use default values
+-->
+
 <Configuration>
  <Remove>
-    <Product ID="VisioProRetail" >
-      <Language ID="en-us" />
+    <!-- ============================================================ -->
+    <!-- PRODUCT SELECTION                                            -->
+    <!-- Uncomment the Product ID you wish to uninstall               -->
+    <!-- Default configuration for repo is VisioProRetail             -->
+    <!-- ============================================================ -->
+    
+    <Product ID="VisioProRetail" >  <!-- Visio Professional (Default) -->
+    <!--<Product ID="VisioStdRetail" > -->  <!-- Visio Standard -->
+    <!--<Product ID="VisioPro2021Volume" > -->  <!-- Visio LTSC Professional 2021 -->
+    <!--<Product ID="VisioStd2021Volume" > -->  <!-- Visio LTSC Standard 2021 -->
+      <!-- ========================================================== -->
+      <!-- LANGUAGE SELECTION                                         -->
+      <!-- Uncomment the language you wish to uninstall               -->
+      <!-- Default is to match system language                        -->
+      <!-- ========================================================== -->
+      <Language ID="MatchOS" /> <!-- Match installed language (recommended) -->
+      
+      <!-- Common languages - uncomment to specify a particular language -->
+      <!-- <Language ID="en-us" /> --> <!-- English (United States) -->
+      <!-- <Language ID="en-gb" /> --> <!-- English (United Kingdom) -->
+      <!-- <Language ID="fr-fr" /> --> <!-- French (France) -->
+      <!-- <Language ID="de-de" /> --> <!-- German (Germany) -->
+      <!-- <Language ID="es-es" /> --> <!-- Spanish (Spain) -->
+      <!-- <Language ID="it-it" /> --> <!-- Italian (Italy) -->
+      <!-- <Language ID="ja-jp" /> --> <!-- Japanese -->
+      <!-- <Language ID="ko-kr" /> --> <!-- Korean -->
+      <!-- <Language ID="pt-br" /> --> <!-- Portuguese (Brazil) -->
+      <!-- <Language ID="ru-ru" /> --> <!-- Russian -->
+      <!-- <Language ID="zh-cn" /> --> <!-- Chinese (Simplified) -->
+      <!-- <Language ID="zh-tw" /> --> <!-- Chinese (Traditional) -->
     </Product>
  </Remove>
  <Display Level="None" AcceptEULA="TRUE" />
