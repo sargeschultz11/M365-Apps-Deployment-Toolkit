@@ -59,8 +59,8 @@
     # Checks if Office is installed and exits without installing if detected
 
 .NOTES
-    Version: 1.2
-    Last Updated: March 30, 2025
+    Version: 1.3
+    Last Updated: April 1, 2025
 #>
 
 [CmdletBinding(DefaultParameterSetName='DefaultAction')]
