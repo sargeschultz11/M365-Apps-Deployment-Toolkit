@@ -8,7 +8,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://GitHub.com/sargeschultz11/M365-Apps-Deployment-Toolkit/issues/)
 [![GitHub contributors](https://img.shields.io/github/contributors/sargeschultz11/M365-Apps-Deployment-Toolkit.svg)](https://GitHub.com/sargeschultz11/M365-Apps-Deployment-Toolkit/graphs/contributors/)
 [![made-with-bash](https://img.shields.io/badge/Made%20with-PowerShell-1f425f.svg)](https://www.microsoft.com/powershell)
-[![Version](https://img.shields.io/badge/Version-1.3.1-brightgreen.svg)]()
+
 
 ## 📋 Overview
 
