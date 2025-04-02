@@ -71,7 +71,6 @@ For detailed information on installation options, customization, deployment scen
 - [Getting Started](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/wiki/Getting-Started)
 - [Configuration Guide](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/wiki/Configuration-Guide)
 - [Script Parameters](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/wiki/Script-Parameters)
-- [Deployment Guides](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/wiki/Intune-Deployment)
 - [Troubleshooting](https://github.com/sargeschultz11/M365-Apps-Deployment-Toolkit/wiki/Troubleshooting-Guide)
 
 ## 👥 Contributing
