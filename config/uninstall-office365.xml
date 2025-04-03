@@ -17,6 +17,8 @@
     <!-- PRODUCT SELECTION                                            -->
     <!-- Uncomment the Product ID you wish to uninstall               -->
     <!-- Default configuration for repo is O365BusinessRetail         -->
+    <!-- For a complete list of supported product IDs, see:           -->
+    <!-- https://learn.microsoft.com/en-us/microsoft-365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run -->
     <!-- ============================================================ -->
     
     <Product ID="O365BusinessRetail" >
@@ -27,24 +29,13 @@
     <!--<Product ID="Standard2021Volume" > -->
       <!-- ========================================================== -->
       <!-- LANGUAGE SELECTION                                         -->
-      <!-- Uncomment the language you wish to uninstall               -->
-      <!-- Default is to match system language                        -->
+      <!-- By default, all installed languages will be uninstalled    -->
+      <!-- Uncomment a language ID only if you want to uninstall      -->
+      <!-- a specific language while keeping others                   -->
       <!-- ========================================================== -->
-      <Language ID="MatchOS" /> <!-- Match installed language (recommended) -->
-      
-      <!-- Common languages - uncomment to specify a particular language -->
       <!-- <Language ID="en-us" /> --> <!-- English (United States) -->
       <!-- <Language ID="en-gb" /> --> <!-- English (United Kingdom) -->
-      <!-- <Language ID="fr-fr" /> --> <!-- French (France) -->
-      <!-- <Language ID="de-de" /> --> <!-- German (Germany) -->
-      <!-- <Language ID="es-es" /> --> <!-- Spanish (Spain) -->
-      <!-- <Language ID="it-it" /> --> <!-- Italian (Italy) -->
-      <!-- <Language ID="ja-jp" /> --> <!-- Japanese -->
-      <!-- <Language ID="ko-kr" /> --> <!-- Korean -->
-      <!-- <Language ID="pt-br" /> --> <!-- Portuguese (Brazil) -->
-      <!-- <Language ID="ru-ru" /> --> <!-- Russian -->
-      <!-- <Language ID="zh-cn" /> --> <!-- Chinese (Simplified) -->
-      <!-- <Language ID="zh-tw" /> --> <!-- Chinese (Traditional) -->
+      <!-- Other language options removed for brevity -->
     </Product>
  </Remove>
  <Display Level="None" AcceptEULA="TRUE" />
