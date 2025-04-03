@@ -21,9 +21,13 @@
 
 <Configuration ID="6dbbe3cd-54c5-4e05-9b7f-0123922eb34f">
   
-  <!-- ============================================================== -->
-  <!-- PRODUCT SELECTION                                              -->
-  <!-- ============================================================== -->
+    <!-- ============================================================ -->
+    <!-- PRODUCT SELECTION                                            -->
+    <!-- Uncomment the Product ID you wish to uninstall               -->
+    <!-- Default configuration for repo is O365BusinessRetail         -->
+    <!-- For a complete list of supported product IDs, see:           -->
+    <!-- https://learn.microsoft.com/en-us/microsoft-365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run -->
+    <!-- ============================================================ -->
   <Add Channel="MonthlyEnterprise">
     
     <!-- ============================================================ -->
@@ -40,7 +44,7 @@
     <!--<Product ID="Standard2021Volume"> -->
       <!-- Language Selection -->
       <!-- Option 1: Match system language (recommended) -->
-      <Language ID="MatchOS" />
+      <Language ID="MatchInstalled" />
       
       <!-- Option 2: Specific language (uncomment and modify as needed) -->
       <!-- <Language ID="en-us" /> -->

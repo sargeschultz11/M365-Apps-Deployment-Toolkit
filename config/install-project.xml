@@ -12,18 +12,20 @@
 -->
 
 <Configuration ID="c3089e9b-4891-4ccb-b7a1-8ac5f42ee68a">
-  <Add Channel="MonthlyEnterprise">
+  <Add>
     <!-- ============================================================ -->
     <!-- PRODUCT SELECTION                                            -->
     <!-- Uncomment the Product ID you wish to install                 -->
     <!-- Default configuration for repo is ProjectProRetail           -->
+    <!-- For a complete list of supported product IDs, see:           -->
+    <!-- https://learn.microsoft.com/en-us/microsoft-365/troubleshoot/installation/product-ids-supported-office-deployment-click-to-run -->
     <!-- ============================================================ -->
     
     <Product ID="ProjectProRetail">  <!-- Project Professional (Default) -->
     <!--<Product ID="ProjectStdRetail"> -->  <!-- Project Standard -->
     <!--<Product ID="ProjectPro2021Volume"> -->  <!-- Project LTSC Professional 2021 -->
     <!--<Product ID="ProjectStd2021Volume"> -->  <!-- Project LTSC Standard 2021 -->
-      <Language ID="MatchOS" />
+      <Language ID="MatchInstalled" />
       <ExcludeApp ID="Groove" />
       <ExcludeApp ID="Lync" />
     </Product>
