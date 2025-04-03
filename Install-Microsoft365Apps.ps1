@@ -59,7 +59,7 @@
     # Checks if Office is installed and exits without installing if detected
 
 .NOTES
-    Version: 1.3.1
+    Version: 1.3.2
     Last Updated: April 1, 2025
 #>
 
